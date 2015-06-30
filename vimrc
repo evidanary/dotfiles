@@ -17,6 +17,7 @@ set number
 set shiftwidth=2
 set cursorline
 
+"NerdTree Settings
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
@@ -27,6 +28,9 @@ syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
+
+"Delete trailing whitespace on lines
+autocmd BufWritePre * :%s/\s\+$//e
 
 " This maps <ESC> to jk
 :inoremap <esc> <nop>
