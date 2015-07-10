@@ -21,6 +21,12 @@ set cursorline
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+"Highlight the currentline in the current pane
+augroup BgHighlight
+  autocmd!
+  autocmd WinEnter * set cul
+  autocmd WinLeave * set nocul
+augroup END
 
 " This was added for vim-ruby plugin
 set nocompatible      " We're running Vim, not Vi!
