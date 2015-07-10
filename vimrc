@@ -20,6 +20,10 @@ set cursorline
 "NerdTree Settings
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" Show hidden files e.g. .ruby-version
+let NERDTreeShowHidden=1
+" Hide the temp .swp files created by vim
+let NERDTreeIgnore = ['\.swp$']
 
 "Highlight the currentline in the current pane
 augroup BgHighlight
