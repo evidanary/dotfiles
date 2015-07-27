@@ -39,6 +39,14 @@ filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
+" Set incremental search (as you type) and case insensitive search
+set incsearch
+set ignorecase
+
+"This highlights the background past the 80 column mark
+let &colorcolumn=join(range(81,999),",")
+highlight ColorColumn ctermbg=8
+
 "Delete trailing whitespace on lines
 autocmd BufWritePre * :%s/\s\+$//e
 
