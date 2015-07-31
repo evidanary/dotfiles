@@ -56,7 +56,7 @@ let g:airline_theme='wombat'
 
 " This was added for vim-ruby plugin
 set nocompatible      " We're running Vim, not Vi!
-syntax on             " Enable syntax highlighting
+" syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
@@ -65,9 +65,19 @@ filetype plugin on    " Enable filetype-specific plugins
 set incsearch
 set ignorecase
 
-"This highlights the background past the 80 column mark
-let &colorcolumn=join(range(81,999),",")
-highlight ColorColumn ctermbg=8
+"This highlights the 80th column as a marker
+"set colorcolumn=80
+function! g:ToggleColorColumn()
+  if &colorcolumn != ''
+    setlocal colorcolumn&
+  else
+    setlocal colorcolumn=+1
+  endif
+endfunction
+
+"Toggle colorcolumn on/off by :cc
+cnoreabbrev cc call g:ToggleColorColumn()
+
 
 "Delete trailing whitespace on lines
 autocmd BufWritePre * :%s/\s\+$//e
@@ -85,6 +95,11 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
+
+" Set colorschemes for solarized (light|dark)
+syntax enable
+set background=dark
+colorscheme solarized
 
 " Use system's clipboard to copy paste things
 set clipboard=unnamed
