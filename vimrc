@@ -65,6 +65,15 @@ filetype plugin on    " Enable filetype-specific plugins
 set incsearch
 set ignorecase
 
+"Prepare vim for 256 color schemes
+let g:solarized_termcolors=256
+
+" Set colorschemes for solarized (light|dark)
+syntax enable
+set background=dark
+colorscheme solarized
+
+
 "This highlights the 80th column as a marker
 "set colorcolumn=80
 function! g:ToggleColorColumn()
@@ -95,11 +104,6 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-
-" Set colorschemes for solarized (light|dark)
-syntax enable
-set background=dark
-colorscheme solarized
 
 " Use system's clipboard to copy paste things
 set clipboard=unnamed
