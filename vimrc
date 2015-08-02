@@ -52,7 +52,7 @@ nnoremap <c-s> :Update<CR>
 inoremap <c-s> <esc>:Update<CR>
 
 "This sets the theme for Airline Plugin
-let g:airline_theme='wombat'
+let g:airline_theme='luna'
 
 " This was added for vim-ruby plugin
 set nocompatible      " We're running Vim, not Vi!
@@ -66,6 +66,7 @@ set incsearch
 set ignorecase
 
 "Prepare vim for 256 color schemes
+set t_Co=256
 let g:solarized_termcolors=256
 
 " Set colorschemes for solarized (light|dark)
