@@ -13,6 +13,7 @@ ZSH_THEME="robbyrussell"
 alias la="ls -larth"
 alias hgrep="history | grep "
 alias ta="tmux attach -t "
+alias gri="grep -ri "
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

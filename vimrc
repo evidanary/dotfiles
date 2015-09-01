@@ -1,4 +1,5 @@
 " turn filetype detection off and, even if it's not strictly
+
 " necessary, disable loading of indent scripts and filetype plugins
 filetype off
 filetype plugin indent off
@@ -14,6 +15,8 @@ syntax on
 
 " Set line numbering, shift width
 set number
+set tabstop=2
+set expandtab
 set shiftwidth=2
 set cursorline
 
@@ -23,6 +26,17 @@ set ignorecase
 "NerdTree Settings
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Don't have to be in insert mode to insert a blank line
+nmap <CR> o<Esc>
+
+
+
+
+
+" Map Commonly occurring mistypes, typos
+" Map Wa to wa
+cnoreabbrev Wa wa
 
 " Show hidden files e.g. .ruby-version
 let NERDTreeShowHidden=1
