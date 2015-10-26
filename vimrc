@@ -1,4 +1,5 @@
 " turn filetype detection off and, even if it's not strictly
+
 " necessary, disable loading of indent scripts and filetype plugins
 filetype off
 filetype plugin indent off
@@ -14,15 +15,30 @@ syntax on
 
 " Set line numbering, shift width
 set number
+set tabstop=2
+set expandtab
 set shiftwidth=2
 set cursorline
 
 "ignore case while searching
 set ignorecase
 
+"Configure silver searcher (Ag)
+let g:ag_working_path_mode="r"
+
 "NerdTree Settings
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+"Ctrlp.vim settings
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
+
+
+" Map Commonly occurring mistypes, typos
+" Map Wa to wa
+cnoreabbrev Wa wa
 
 " Show hidden files e.g. .ruby-version
 let NERDTreeShowHidden=1
@@ -38,6 +54,8 @@ augroup END
 
 " File of extension .txt should have soft wrap enabled
 autocmd BufNewFile,BufRead *.txt set wrap
+" Files of extension .md should be marked as markdown and not modula2
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " Save the file using C-s
 command -nargs=0 -bar Update if &modified
@@ -106,5 +124,8 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-" Use system's clipboard to copy paste things
+" try to toggle paste
+set pastetoggle=<F2>
+
+" Use system's clipboard to copy paste things (not working)
 set clipboard=unnamed
