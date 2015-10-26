@@ -35,7 +35,6 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
 
-
 " Map Commonly occurring mistypes, typos
 " Map Wa to wa
 cnoreabbrev Wa wa
