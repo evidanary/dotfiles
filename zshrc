@@ -14,6 +14,8 @@ alias la="ls -larth"
 alias hgrep="history | grep "
 alias ta="tmux attach -t "
 alias gri="grep -ri "
+alias postgres.server.start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+alias postgres.server.stop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 
 # This allow us to use Ctrl + S to save on vim
 alias vim="stty stop '' -ixoff ; vim"
