@@ -8,6 +8,9 @@ filetype plugin indent off
 execute pathogen#infect()
 call pathogen#helptags()
 
+"When a file has been detected to have been changed outside of Vim, read it again
+set autoread
+
 " turn filetype detection, indent scripts and filetype plugins on
 " and syntax highlighting too
 filetype plugin indent on
@@ -24,6 +27,9 @@ au TabLeave * let g:lasttab = tabpagenr()
 
 "Leader gf copies word under cursor to ctrlp
 nmap <leader>gf :CtrlP<CR><C-\>w
+
+"Leader lp goes to the end of previously changed or yanked text
+nmap <leader>l ']
 
 " Set line numbering, shift width
 set number
