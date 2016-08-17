@@ -1,51 +1,50 @@
-" turn filetype detection off and, even if it's not strictly
-
-" necessary, disable loading of indent scripts and filetype plugins
-filetype off
-filetype plugin indent off
-
 " pathogen runntime injection and help indexing
 execute pathogen#infect()
-call pathogen#helptags()
-
-"When a file has been detected to have been changed outside of Vim, read it again
-set autoread
-
-" turn filetype detection, indent scripts and filetype plugins on
-" and syntax highlighting too
-filetype plugin indent on
-syntax on
 
 " Set the leader key
-:let mapleader = ","
-:nnoremap <leader>d dd
+let mapleader = ","
+nnoremap <leader>d dd
 
 "Leader lt maps to last tab
 let g:lasttab = 1
 nmap <Leader>lt :exe "tabn ".g:lasttab<CR>
-au TabLeave * let g:lasttab = tabpagenr()
+autocmd TabLeave * let g:lasttab = tabpagenr()
 
 "Leader gf copies word under cursor to ctrlp
 nmap <leader>gf :CtrlP<CR><C-\>w
 
-"Leader lp goes to the end of previously changed or yanked text
-nmap <leader>l ']
-
-" Set line numbering, shift width
-set number
+" set line numbering, shift width
+set relativenumber
 set tabstop=2
 set expandtab
 set shiftwidth=2
 set cursorline
 
+" Remapping surround with for tpope's surround plugin
+nmap ms ys
+nmap mS ysiw
+
+" For RSpec tests we use vimux plugin
+" Run all spec files
+nnoremap <leader>r :VimuxRunCommand "bundle exec rake spec"<CR>
+" Run the current file with rspec
+nnoremap <leader>c :VimuxRunCommand "bundle exec rspec ". bufname("%")<CR>
+" Run the last command
+nnoremap <leader>l :VimuxRunLastCommand<CR>
+
+" Yank in visual mode returns cursor to end of selection
+vnoremap y myy`y
+vnoremap Y myY`y
+
 "Show branch name in Status line
 set statusline=%{fugitive#statusline()}
 
-"ignore case while searching
-set ignorecase
-
 "Configure silver searcher (Ag)
 let g:ag_working_path_mode="r"
+
+"Prevent ex-mode from being activated for commonly mistyped keys
+map q: <Nop>
+nnoremap Q <nop>
 
 "NerdTree Settings
 map <C-n> :NERDTreeToggle<CR>
@@ -55,7 +54,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip
-
 
 " Map Commonly occurring mistypes, typos
 " Map Wa to wa
@@ -80,24 +78,12 @@ autocmd BufNewFile,BufRead *.txt set wrap
 " Files of extension .md should be marked as markdown and not modula2
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
-" Save the file using C-s
-command -nargs=0 -bar Update if &modified
-                           \|    if empty(bufname('%'))
-                           \|        browse confirm write
-                           \|    else
-                           \|        confirm write
-                           \|    endif
-                           \|endif
-
-nnoremap <c-s> :Update<CR>
-inoremap <c-s> <esc>:Update<CR>
-
 "This sets the theme for Airline Plugin
 let g:airline_theme='luna'
 
 " This was added for vim-ruby plugin
 set nocompatible      " We're running Vim, not Vi!
-" syntax on             " Enable syntax highlighting
+syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
@@ -136,6 +122,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 " This maps <ESC> to jk
 :inoremap <esc> <nop>
 :inoremap jk <esc>
+:inoremap :Wa <esc>:wa<CR>
+:inoremap :wa <esc>:wa<CR>
 
 " This maps :qt to :tabclose
 cnoreabbrev qt tabclose
@@ -152,7 +140,7 @@ nnoremap <c-l> <c-w>l
 
 " try to toggle paste
 set pastetoggle=<F2>
+inoremap <F2> :set pastetoggle
 
 " Use system's clipboard to copy paste things (not working)
 set clipboard=unnamed
-
